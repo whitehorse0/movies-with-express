@@ -40,7 +40,7 @@ class Server {
 
   setUpServer () {
     this.registerRoutes()
-    // this.app.use(this.errorHandler())
+    this.app.use(this.errorHandler())
     this.app.listen(this.config.port, this.listeningReporter)
   }
 
@@ -59,7 +59,17 @@ class Server {
   }
 
   errorHandler () {
-    
+    return (err, req, res, next) => {
+      if (err.response) {
+        console.log(' \n==================================================================================')
+        console.log('Error has a response \nDate: ' + new Date().toDateString())
+        console.log('----------------------------------------------------------------------------------')
+        console.log('Status: ', err.response.status)
+        console.log('Data: ', err.response.data)
+        console.log('----------------------------------------------------------------------------------')
+        return res.status(err.response.status).json(err.response.data)
+      }
+    }
   }
 }
 

@@ -1,9 +1,10 @@
 const axios = require('axios')
+const Error = require('../errors')
 
 class Base {
   constructor (req) {
     this.req = req
-    this.timeout = 30000
+    this.timeout = 3000
     this.client = null
   }
 
@@ -21,7 +22,7 @@ class Base {
     }
 
     this.client = this.createClient()
-    // this.assignClienetInterceptors()
+    this.assignClientInterceptors()
 
     return {
       get (target, method) {
@@ -32,6 +33,24 @@ class Base {
         }
       }
     }
+  }
+
+  assignClientInterceptors () {
+    let service = this
+    
+    this.client.interceptors.response.use(function (response) {
+      return response
+    }, function (error) {
+      if (error.code === 'ECONNREFUSED') {
+        return Promise.reject(new Error.Service(`${service.serviceName} is not available`, 'NOT_AVAILABLE'))
+      }
+      
+      if (error.code === 'ECONNABORTED') {
+        return Promise.reject(new Error.Service(`request to ${service.serviceName} is timeout`, 'TIMEOUT'))
+      }
+      
+      return Promise.reject(new Error.ClientService(error.response))
+    })
   }
 }
 
