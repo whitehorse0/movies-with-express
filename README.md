@@ -32,6 +32,7 @@ To check the list of available api and can be accessed at
 
 #### Available endpoint:
 - Search
+
     http://localhost:3000/movies
 
 Query String
@@ -47,6 +48,7 @@ Query String
 ``` http://localhost:3000/movies?search=batman&page=1 ```
 
 - Param id
+
     http://localhost:3000/movies/:id
 
 Param :id is imdbID 
