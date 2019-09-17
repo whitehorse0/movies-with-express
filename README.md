@@ -49,7 +49,7 @@ Query String
 
 with Param Id
 
-    http://localhost:3000/movies
+    http://localhost:3000/movies/:id
 
 Param :id is imdbID 
 
