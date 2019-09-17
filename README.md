@@ -31,21 +31,23 @@ To check the list of available api and can be accessed at
 ----------
 
 #### Available endpoint:
+- Search
+    http://localhost:3000/movies
 
-- http://localhost:3000/movies
+Query String
 
-Query String Search
-    | **Required** 	|       **Key**      |  **Valid Options**   |
-    |---------------|--------------------|----------------------|
-    | Yes      	    | search         	 |          -         	|
-    | Optional      | title         	 |          -         	|
-    | No      	    | type               | movie,series,episode |
-    | No     	    | year          	 |          -     	    |
-    | No     	    | page          	 |        1 - 100    	|
+| **Required** 	|       **Key**      |  **Valid Options**   |
+|---------------|--------------------|----------------------|
+| Yes      	    | search         	 |          -         	|
+| Optional      | title         	 |          -         	|
+| No      	    | type               | movie,series,episode |
+| No     	    | year          	 |          -     	    |
+| No     	    | page          	 |        1 - 100    	|
 
 ``` http://localhost:3000/movies?search=batman&page=1 ```
 
-- http://localhost:3000/movies/:id
+- Param id
+    http://localhost:3000/movies/:id
 
 Param :id is imdbID 
 
