@@ -12,7 +12,7 @@ simple movies explore - a small ExpressJS server to search movies on https://omd
 ### Folders
 
 - `controllers` - Contains all the application controller
-- `routes` - Contains all the route api
+- `routes` - Contains all the the route definitions for our API
 - `service` - Contains API service third part, which we are currently using it https://omdbapi.com/
 
 Run the project development server
@@ -26,3 +26,27 @@ The api can now be accessed at
 To check the list of available api and can be accessed at
 
     http://localhost:3000/endpoints
+
+
+----------
+
+#### Available endpoint:
+
+- http://localhost:3000/movies
+
+Query String Search
+    | **Required** 	|       **Key**      |  **Valid Options**   |
+    |---------------|--------------------|----------------------|
+    | Yes      	    | search         	 |          -         	|
+    | Optional      | title         	 |          -         	|
+    | No      	    | type               | movie,series,episode |
+    | No     	    | year          	 |          -     	    |
+    | No     	    | page          	 |        1 - 100    	|
+
+``` http://localhost:3000/movies?search=batman&page=1 ```
+
+- http://localhost:3000/movies/:id
+
+Param :id is imdbID 
+
+``` http://localhost:3000/movies/tt2975590 ```

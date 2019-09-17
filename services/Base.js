@@ -42,11 +42,11 @@ class Base {
       return response
     }, function (error) {
       if (error.code === 'ECONNREFUSED') {
-        return Promise.reject(new Error.Service(`${service.serviceName} is not available`, 'NOT_AVAILABLE'))
+        return Promise.reject(new Error.Service(`${service.serviceName} is not available`, 'not_available'))
       }
       
       if (error.code === 'ECONNABORTED') {
-        return Promise.reject(new Error.Service(`request to ${service.serviceName} is timeout`, 'TIMEOUT'))
+        return Promise.reject(new Error.Service(`request to ${service.serviceName} is timeout`, 'timeout'))
       }
       
       return Promise.reject(new Error.ClientService(error.response))
